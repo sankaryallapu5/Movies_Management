@@ -10,6 +10,7 @@ class movie_Favorite(models.Model):
     title = models.CharField(max_length=200)
     poster = models.URLField(blank=True)
     year = models.CharField(max_length=10)
+    
 
     def __str__(self):
         return f"{self.user.username} - {self.title}"
