@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Your Favorite Movies</h2>
+{% if favorites %}
+  <ul>
+    {% for movie in favorites %}
+      <li>
+        <img src="{{ movie.poster }}" width="100">
+        {{ movie.title }} ({{ movie.year }})
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>You have no favorite movies yet.</p>
+{% endif %}
+{% endblock %}

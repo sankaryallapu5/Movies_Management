@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Movie List</title>
+    <link rel="stylesheet" href="{% static 'movies/styles.css' %}">
+    <style>
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 20px; display: flex; align-items: center; gap: 15px; }
+        img { width: 80px; height: auto; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Movies</h1>
+
+    <form method="get">
+        <input type="text" name="query" placeholder="Search movies..." value="{{ request.GET.query }}">
+        <button type="submit">Search</button>
+    </form>
+
+    <ul>
+        {% for movie in movies %}
+            <li>
+                {% if movie.Poster and movie.Poster != "N/A" %}
+                    <img src="{{ movie.Poster }}" alt="{{ movie.Title }}">
+                {% else %}
+                    <img src="{% static 'movies/no-image.png' %}" alt="No image">
+                {% endif %}
+                <a href="{% url 'movies:detail' movie.imdbID %}">{{ movie.Title }} ({{ movie.Year }})</a>
+            </li>
+        {% empty %}
+            <li>No movies found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

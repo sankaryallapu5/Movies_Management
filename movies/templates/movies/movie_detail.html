@@ -1,0 +1,24 @@
+{% load static %}  <!-- Must be at the top -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ movie.Title }}</title>
+    <link rel="stylesheet" href="{% static 'movies/styles.css' %}">
+</head>
+<body>
+    <h1>{{ movie.Title }} ({{ movie.Year }})</h1>
+
+    {% if movie.Poster and movie.Poster != "N/A" %}
+        <img src="{{ movie.Poster }}" alt="{{ movie.Title }}" width="200">
+    {% endif %}
+
+    <p><strong>Genre:</strong> {{ movie.Genre }}</p>
+    <p><strong>Director:</strong> {{ movie.Director }}</p>
+    <p><strong>Actors:</strong> {{ movie.Actors }}</p>
+    <p><strong>Plot:</strong> {{ movie.Plot }}</p>
+
+    <p><a href="{% url 'movies:list' %}">Back to movie list</a></p>
+</body>
+</html>
